@@ -274,9 +274,9 @@ class ExtendedImageCropLayerState extends State<ExtendedImageCropLayer>
   }
 
   void moveUpdate(_MoveType moveType, Offset delta) {
-    if (isAnimating) {
-      return;
-    }
+    // if (isAnimating) {
+    //   return;
+    // }
 
     ///only move by one type at the same time
     if (_currentMoveType != null && moveType != _currentMoveType) {
@@ -476,7 +476,7 @@ class ExtendedImageCropLayerState extends State<ExtendedImageCropLayer>
     if (_currentMoveType != null && moveType == _currentMoveType) {
       _currentMoveType = null;
       //if (widget.editorConfig.autoCenter)
-      _startTimer();
+      // _startTimer();
     }
   }
 
