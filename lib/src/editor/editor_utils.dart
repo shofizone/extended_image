@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:extended_image/src/typedef.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class EditActionDetails {
 
   ///  aspect ratio of crop rect
   double? _cropAspectRatio;
+
   double? get cropAspectRatio {
     if (_cropAspectRatio != null) {
       return isHalfPi ? 1.0 / _cropAspectRatio! : _cropAspectRatio;
@@ -81,6 +83,28 @@ class EditActionDetails {
   Rect? get screenCropRect => cropRect?.shift(layoutTopLeft!);
 
   bool get reachCropRectEdge => _reachCropRectEdge;
+
+  EditActionDetails clone() {
+    return EditActionDetails()
+      .._rotateRadian = _rotateRadian
+      .._flipX = _flipX
+      .._flipY = _flipY
+      .._computeHorizontalBoundary = _computeHorizontalBoundary
+      .._computeVerticalBoundary = _computeVerticalBoundary
+      .._layoutRect = _layoutRect
+      .._screenDestinationRect = _screenDestinationRect
+      .._screenDestinationRect = _screenDestinationRect
+      .._reachCropRectEdge = _reachCropRectEdge
+      ..totalScale = totalScale
+      ..preTotalScale = preTotalScale
+      ..delta = delta
+      ..screenFocalPoint = screenFocalPoint
+      ..cropRectPadding = cropRectPadding
+      ..cropRect = cropRect
+      ..originalAspectRatio = originalAspectRatio
+      ..cropAspectRatio = cropAspectRatio
+      .._cropAspectRatio = _cropAspectRatio;
+  }
 
   void rotate(double angle, Rect layoutRect, BoxFit? fit) {
     if (cropRect == null) {
@@ -548,6 +572,7 @@ enum InitCropRectType {
 
 class EditorCropLayerPainter {
   const EditorCropLayerPainter();
+
   void paint(Canvas canvas, Size size, ExtendedImageCropLayerPainter painter) {
     paintMask(canvas, size, painter);
     paintLines(canvas, size, painter);

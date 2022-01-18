@@ -53,7 +53,10 @@ class _ImageEditorDemoState extends State<ImageEditorDemo> {
   void initState() {
     _aspectRatio = _aspectRatios.first;
     _cropLayerPainter = const EditorCropLayerPainter();
+
     super.initState();
+    editorKey.currentState
+        ?.restoreEditActionDetails(EditActionDetails()..cropRect = Rect.zero);
   }
 
   @override
